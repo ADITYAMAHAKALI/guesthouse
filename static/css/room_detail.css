@@ -1,0 +1,35 @@
+:root{
+  --nav-col :#5D4954;
+  --default-white:rgb(225,225,225);
+  --default-blue:#0d6efd;
+}
+img {
+    display:none;
+}
+.roomContainer{
+    margin-left: 20%;
+    
+    display:grid;
+  }
+  .RoomLabel{
+    font-size: 1em;
+    padding:2%;
+    border: 2px solid black;
+    font-weight: 600;
+    width:50%;
+    font-style: italic;
+    background-color: var(--default-white);
+    color: var(--nav-col);
+  }
+  .RoomLabel:hover{
+    background-color: var(--nav-col);
+    color: var(--default-white);
+    transition: 200ms ease-in-out;
+  }
+ 
+  span{
+      color: var(--default-blue);
+  }
+  span:hover{
+    color: var(--default-white);
+  }

@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block additional_css %}
+    <link rel="stylesheet" href="{% static 'css/room_detail.css' %}">
+{% endblock %}
+{% block content-title %}
+    <div class="jumbotron">
+    <h1>Check-Out No: {{ checkout.id }}</h1>
+    </div>
+{% endblock %}
+<!-- TODO Work on FrontEnd -->
+{% block main-content %}
+<div class="roomContainer">
+    <div class = "Room">
+        <label class = " RoomLabel">Check-In: <span>{{ checkout.check_in }}</span></label>
+    </div>
+    <div class = "Room">
+        <label class = " RoomLabel">Stay Duration:  <span>{{ checkout.stay_duration }}</span></label>
+    </div>
+    <div class = "Room">
+        <label class = " RoomLabel">Total Amount:<span>{{ checkout.total_amount }}</span> </label>
+    </div>
+    <div class = "Room">
+        <label class = " RoomLabel">Pay Amount: <span>{{ checkout.pay_amount }}:</span></br>    </label>
+    </div>
+    <div class = "Room">
+        <label class = " RoomLabel">Check-Out Date Time: <span>{{ checkout.check_out_date_time }}</span> </label>
+    </div>
+    <div class = "Room">
+        <label class = " RoomLabel">Checked Out by: 
+            {% if staff.count == 0 %}
+             {{ checkout.user }}
+            {% else %}
+             <span><a href="{% url 'staff-detail' staff.staff_id %}">{{ staff }}</a></span>
+            {% endif %}
+    </div>
+    
+{% endblock %}

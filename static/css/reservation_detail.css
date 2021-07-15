@@ -1,0 +1,25 @@
+.infoContainer{
+    background-color: whitesmoke;
+    font-weight: 600;
+    padding: 20px;
+ }
+ .info{
+     display: flex;
+     justify-items: center;
+     margin: 5px;
+     justify-content: space-around;
+ }
+ .info label{
+     color: #5D4954;
+     font-size: 120%;
+ }
+ .info a{
+     border: none;
+     color: tomato;
+     text-align: center;
+ }
+ .info p{
+    border: none;
+    background-color: transparent;
+    color: black;
+ }

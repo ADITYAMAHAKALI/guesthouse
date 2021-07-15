@@ -1,0 +1,14 @@
+:root{
+    --nav-col :#5D4954;
+    --default-white:rgb(225,225,225);
+    --default-blue:#0d6efd;
+  }
+.detailtron{
+    height:90% !important;
+    background-color:var(--nav-col);
+}
+h3,h4{
+    letter-spacing: 2px;
+    color:white;
+    font-weight: 800;
+}

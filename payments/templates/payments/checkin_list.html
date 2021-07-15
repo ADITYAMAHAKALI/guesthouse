@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+<!--ToDo Work on Front end -->
+{%load static %}
+{% block additional_css %}
+<link rel="stylesheet" href="{% static 'css/reservation_list.css' %}">
+{% endblock %}
+{% block content-title %}
+<div class="jumbotron">
+    <h1>{{ title }}</h1>
+</div>
+{% endblock %}
+{% block main-content %}
+    {% if checkin_list %}
+        <form action="" method="post" id="checkout">{% csrf_token %}
+            {{ form }}
+        </form>
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>Check-In</th>
+                <th>Resevered By </th>
+                <th>Rooms</th>
+                <th>Paid Amount</th>
+                <th>Check-In Date Time</th>
+                <th>Checkout?</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for check_in in checkin_list %}
+                <tr>
+                    <td>
+                        <a href="{% url 'check_in-detail' check_in.id %}"> {{ check_in.reservation.customer.first_name }}</a>
+                    </td>
+                    <td>{{ check_in.reservation.staff.first_name }} {{ check_in.reservation.staff.last_name }}</td>
+                    <td>{% if check_in.rooms %}{{ check_in.rooms }}{% else %}-{% endif %}</td>
+                    <td>{{ check_in.initial_amount }}</td>
+                    <td>{{ check_in.check_in_date_time }}</td>
+                    <td>
+                        {% if not check_in.checkout %}
+                            <a class="btn btn-success confirm-checkout"
+                            href="{% url 'confirm_check_out' check_in.id %}">Checkout</a>
+
+                        {% else %}
+                            <a class="btn btn-secondary"
+                               href="{% url 'check_out-detail' check_in.checkout.id %}">Details</a>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>There are no check-ins.</p>
+    {% endif %}
+    {% block additional-javascript %}
+    {% endblock %}
+{% endblock %}

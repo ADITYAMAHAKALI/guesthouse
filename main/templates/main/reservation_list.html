@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block additional_css %}
+<link rel="stylesheet" href="{% static 'css/reservation_list.css' %}">
+{% endblock %}
+
+{% block content-title %}
+<div class="jumbotron">
+    <h1>{{ title }}</h1>
+</div>
+{% endblock %}
+
+{% block content %}
+
+    <form action="" method="post" id="checkin">{% csrf_token %}
+        {{ form }}
+    </form>
+    {% if reservation_list %}
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>Reservation ID</th>
+                <th>Customer</th>
+                <th>Staff</th>
+                <th>No of Children</th>
+                <th>No of Adults</th>
+                <th>Room No</th>
+                <th>Reservation Date Time</th>
+                <th>Check In ?</th>
+                <th>Cancel Reservation?</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for reservation in reservation_list %}
+                <tr>
+                    <td>
+                        <a href="{% url 'reservation-detail' reservation.reservation_id %}"> {{ reservation.reservation_id }}</a>
+                    </td>
+                    <td>{{ reservation.customer.first_name }} {{reservation.customer.last_name}}</td>
+                    <td>{{ reservation.staff.first_name }} {{reservation.staff.last_name }}</td>
+                    <td>{{ reservation.no_of_children }}</td>
+                    <td>{{ reservation.no_of_adults }}</td>
+                    <td>
+                        {% for room in reservation.room_set.all %}
+                            {{ room.room_no }}
+                            {% if not forloop.last %},
+                            {% endif %}
+                        {% endfor %}
+                    </td>
+                    <td>{{ reservation.reservation_date_time }}</td>
+                    <td>{% if not reservation.checkin %}
+                        {% if not reservation.cancelreservation %}
+                        <a class="btn btn-primary confirm-checkin"
+                           href="{% url 'confirm_check_in' reservation.reservation_id %}">Check-In</a>
+                           {% endif %}
+                    {% else %}
+                        <a class="btn btn-secondary"
+                           href="{% url 'check_in-detail' reservation.checkin.id %}">Details</a>
+                    {% endif %}</td>
+                    
+                    <td>{% if not reservation.checkin %} 
+                        {% if not reservation.cancelreservation %}
+                        <a class="btn btn-primary danger"
+                           href="{% url 'cancel_reservation' reservation.reservation_id %}">Cancel</a>
+                           {% endif %}
+                    {% endif %}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>There are no reservations.</p>
+    {% endif %}
+{% endblock %}
+{% block additional-javascript %}
+    
+{% endblock %}

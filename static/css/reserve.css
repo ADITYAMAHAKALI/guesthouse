@@ -1,0 +1,41 @@
+:root{
+    --nav-col :#5D4954;
+    --default-white:rgb(225,225,225);
+    --default-blue:#0d6efd;
+  }
+#form_div{
+    background-color: rgba(231, 198, 203,0.1);
+    margin-bottom: -20%;
+    display: grid;
+    justify-content: center;
+    margin-left: 10% ;
+}
+label{
+    color:  var(--nav-col);
+    font-weight: 600;
+}
+legend{
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+.datetime{
+    color:var(--nav-col);
+    font-weight: 400;
+}
+.country-select-flag{
+    display: none;
+}
+#submit{
+    margin-top:20px !important;
+    width:50%;
+    border:2px solid var(--nav-col);
+    border-radius: 5px;
+    justify-self: center;
+    margin-left: 10%;
+}
+#submit:hover {
+   background-color: var(--nav-col);
+   color: var(--default-white);
+   transition: 100ms ease-in-out;
+
+}

@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content-title %}
+<div class="jumbotron">
+    <h1>Reservation Successful</h1>
+</div>
+{% endblock %}
+
+{% block main-content %}
+    <div class="container">
+
+        <div class="card">
+             <div class="card-header bg.success">Reservation ID: {{ reservation.reservation_id }}</div>
+            <div class="card-body bg.primary">Customer: {{ reservation.customer.first_name }} {{reservation.customer.last_name}}
+            </div>
+            <div class="card-footer bg.info">Reserved by: {{ reservation.staff.first_name }} {{ reservation.staff.last_name }}</div>
+  </div>
+</div>
+{% endblock %}

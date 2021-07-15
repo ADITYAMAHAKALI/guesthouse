@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="slider">    
+  <!-- !---------------carousel -->
+    <figure>
+      <img src="{% static 'images/c_5.jpg' %}" alt="">
+      <img src="{% static 'images/c_6.jpg' %}" alt="">
+      <img src="{% static 'images/c_10.jpg' %}" alt="">
+      <img src="{% static 'images/c_11.jpg' %}" alt="">
+      <img src="{% static 'images/c_5.jpg' %}" alt="">
+      
+    </figure>
+  </div>
+{% if not user.is_authenticated %}
+<div class="jumbotron">
+    <a href="{% url 'login' %}" class="nav-link">Login</a>
+    </div>
+{% else %}
+<div class="jumbotron">
+<p> Welcome, {{ user.username }} </p>
+<a href="{% url 'reserve' %}">Book a Room</a>
+{% endif %}
+{% if  user.is_authenticated %}
+<div class="infoContainer">
+            <div class = "Info">
+                <label class = " InfoLabel">total_num_rooms : {{total_num_rooms}}</label>
+            </div>
+            <div class = "Info">
+                <label class = " InfoLabel">available_num_rooms :  {{available_num_rooms}}</label>
+            </div>
+            <div class = "Info">
+                <label class = " InfoLabel">total_num_reservations:  {{total_num_reservations}}</label>
+            </div>
+            <div class = "Info">
+                <label class = " InfoLabel">total_num_staffs:  {{total_num_staffs}}</label>
+            </div>
+            <div class = "Info">
+                <label class = " InfoLabel">total_num_customers :  {{total_num_customers}}</label>
+            </div>
+            {% if last_reserved_by %}
+            <div class = "Info">
+                <label class = " InfoLabel">last_reserved: {{last_reserved_by}}</label>
+            </div>
+            {% endif %}
+        </div>
+      {% endif %}
+</div>
+
+{% endblock %}

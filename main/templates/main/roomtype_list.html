@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{%load static %}
+{% block additional_css %}
+<link rel="stylesheet" href="{% static 'css/reservation_list.css' %}">
+{% endblock %}
+{% block content-title %}
+<div class="jumbotron">
+    <h1>{{ title }}</h1>
+</div>
+{% endblock %}
+{% block main-content %}
+    {% if roomtype_list %}
+        <table class="table table-hover">
+            <thead class="thead-light">
+            <tr>
+                <th>Room Type</th>
+                <th>Avalable Rooms</th>
+                <th>Facility</th>
+                <th>Room Price</th>
+
+            </tr>
+            </thead>
+            <tbody>
+               
+            {% for room in roomtype_list  %}
+                <tr>
+                    <td><a href="{% url 'eachroomtype' room.room_type_id %}"> {{ room.name }}</td>     
+                    <td>{{ room.No_of_Rooms }}</a></td>
+                    <td>
+                        {% for facility in room.facility.all %} 
+                         {{ facility.name }}
+
+                        {% endfor %}
+                    </td>
+                    <td>{{ room.price }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>There are no rooms.</p>
+    {% endif %}
+{% endblock %}
+
